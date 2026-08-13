@@ -33,6 +33,15 @@
     "updatedAt": 1786610357140
   },
   {
+    "id": "msr63jx0gq9sq",
+    "date": "2026-08-13",
+    "type": "done",
+    "tags": [],
+    "content": "学习工作台",
+    "createdAt": 1786604345748,
+    "updatedAt": 1786604345748
+  },
+  {
     "id": "msr5jarxrdht4",
     "date": "2026-08-13",
     "type": "tip",
@@ -42,14 +51,5 @@
     "content": "yhh",
     "createdAt": 1786603400781,
     "updatedAt": 1786603400781
-  },
-  {
-    "id": "msr63jx0gq9sq",
-    "date": "2026-08-13",
-    "type": "done",
-    "tags": [],
-    "content": "学习工作台",
-    "createdAt": 1786604345748,
-    "updatedAt": 1786604345748
   }
 ]
