@@ -11,17 +11,6 @@
     "updatedAt": 1786603400781
   },
   {
-    "id": "msr8c2gz416mc",
-    "date": "2026-08-13",
-    "type": "tip",
-    "tags": [
-      "kp"
-    ],
-    "content": "uoh",
-    "createdAt": 1786608102275,
-    "updatedAt": 1786608102275
-  },
-  {
     "id": "msr63jx0gq9sq",
     "date": "2026-08-13",
     "type": "done",
@@ -51,5 +40,16 @@
     "content": "解决了吗",
     "createdAt": 1786610357140,
     "updatedAt": 1786610357140
+  },
+  {
+    "id": "msr8c2gz416mc",
+    "date": "2026-08-13",
+    "type": "tip",
+    "tags": [
+      "kp"
+    ],
+    "content": "uoh",
+    "createdAt": 1786608102275,
+    "updatedAt": 1786608102275
   }
 ]
