@@ -55,5 +55,16 @@
     "createdAt": 1786610357140,
     "updatedAt": 1786621048612,
     "deleted": true
+  },
+  {
+    "id": "msrgajpf568gu",
+    "date": "2026-08-13",
+    "type": "idea",
+    "tags": [
+      "想法灵感"
+    ],
+    "content": "想用WorkBuddy做一个数字人视频生成工具",
+    "createdAt": 1786621468227,
+    "updatedAt": 1786621468227
   }
 ]
