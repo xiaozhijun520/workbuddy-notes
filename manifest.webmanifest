@@ -1,0 +1,14 @@
+{
+  "name": "WorkBuddy 学习工作台",
+  "short_name": "WB学习台",
+  "description": "记录学习 WorkBuddy 的过程：功能技巧、踩坑方案、做了什么、想法灵感",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#f5f6fb",
+  "theme_color": "#6366f1",
+  "lang": "zh-CN",
+  "icons": [
+    {"src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}
+  ]
+}
