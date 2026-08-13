@@ -31,17 +31,6 @@
     "updatedAt": 1786603035374
   },
   {
-    "id": "msr9oec43qti0",
-    "date": "2026-08-13",
-    "type": "bug",
-    "tags": [
-      "999"
-    ],
-    "content": "解决了吗",
-    "createdAt": 1786610357140,
-    "updatedAt": 1786610357140
-  },
-  {
     "id": "msr8c2gz416mc",
     "date": "2026-08-13",
     "type": "tip",
@@ -51,5 +40,16 @@
     "content": "uoh",
     "createdAt": 1786608102275,
     "updatedAt": 1786608102275
+  },
+  {
+    "id": "msr9oec43qti0",
+    "date": "2026-08-13",
+    "type": "bug",
+    "tags": [
+      "999"
+    ],
+    "content": "解决了吗",
+    "createdAt": 1786610357140,
+    "updatedAt": 1786610357140
   }
 ]
