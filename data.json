@@ -1,5 +1,16 @@
 [
   {
+    "id": "msr5bgtqj206e",
+    "date": "2026-08-13",
+    "type": "tip",
+    "tags": [
+      "HY3，记录台"
+    ],
+    "content": "今天用HY3模型免费手搓了一个WorkBuddy 学习台，用来记录我WorkBuddy 学习过程",
+    "createdAt": 1786603035374,
+    "updatedAt": 1786603035374
+  },
+  {
     "id": "msr63jx0gq9sq",
     "date": "2026-08-13",
     "type": "done",
@@ -7,17 +18,6 @@
     "content": "学习工作台",
     "createdAt": 1786604345748,
     "updatedAt": 1786604345748
-  },
-  {
-    "id": "msr5jarxrdht4",
-    "date": "2026-08-13",
-    "type": "tip",
-    "tags": [
-      "yhh"
-    ],
-    "content": "yhh",
-    "createdAt": 1786603400781,
-    "updatedAt": 1786603400781
   },
   {
     "id": "msr8c2gz416mc",
@@ -40,5 +40,16 @@
     "content": "解决了吗",
     "createdAt": 1786610357140,
     "updatedAt": 1786610357140
+  },
+  {
+    "id": "msr5jarxrdht4",
+    "date": "2026-08-13",
+    "type": "tip",
+    "tags": [
+      "yhh"
+    ],
+    "content": "yhh",
+    "createdAt": 1786603400781,
+    "updatedAt": 1786603400781
   }
 ]
