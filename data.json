@@ -1,5 +1,14 @@
 [
   {
+    "id": "msr63jx0gq9sq",
+    "date": "2026-08-13",
+    "type": "done",
+    "tags": [],
+    "content": "学习工作台",
+    "createdAt": 1786604345748,
+    "updatedAt": 1786604345748
+  },
+  {
     "id": "msr5jarxrdht4",
     "date": "2026-08-13",
     "type": "tip",
@@ -22,12 +31,14 @@
     "updatedAt": 1786608102275
   },
   {
-    "id": "msr63jx0gq9sq",
+    "id": "msr9oec43qti0",
     "date": "2026-08-13",
-    "type": "done",
-    "tags": [],
-    "content": "学习工作台",
-    "createdAt": 1786604345748,
-    "updatedAt": 1786604345748
+    "type": "bug",
+    "tags": [
+      "999"
+    ],
+    "content": "解决了吗",
+    "createdAt": 1786610357140,
+    "updatedAt": 1786610357140
   }
 ]
