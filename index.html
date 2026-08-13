@@ -276,7 +276,7 @@ function addEntry(){
   saveEntries();
   document.getElementById('fContent').value='';
   document.getElementById('fTags').value='';
-  renderAll(); toast('已记录 ✓');
+  renderAll(); toast('已记录 ✓'); autoSync();
 }
 function renderTodayList(){
   const el = document.getElementById('todayList');
@@ -334,7 +334,7 @@ function bindEntryOps(root){
     const id = card.dataset.id;
     card.querySelector('[data-act=edit]').onclick = ()=>openEdit(id);
     card.querySelector('[data-act=del]').onclick = ()=>{
-      if(confirm('确定删除这条记录？')){ entries=entries.filter(x=>x.id!==id); saveEntries(); renderAll(); toast('已删除'); }
+      if(confirm('确定删除这条记录？')){ entries=entries.filter(x=>x.id!==id); saveEntries(); renderAll(); toast('已删除'); autoSync(); }
     };
     card.querySelectorAll('.tag').forEach(t=>t.onclick=()=>{ filter.tag=t.dataset.tag; switchTab('browse'); renderBrowse(); });
   });
@@ -362,7 +362,7 @@ function openEdit(id){
     e.type=cur; e.content=document.getElementById('eContent').value.trim();
     e.tags=document.getElementById('eTags').value.split(',').map(s=>s.trim()).filter(Boolean);
     e.date=document.getElementById('eDate').value||e.date; e.updatedAt=Date.now();
-    saveEntries(); closeEdit(); renderAll(); toast('已保存 ✓');
+    saveEntries(); closeEdit(); renderAll(); toast('已保存 ✓'); autoSync();
   };
 }
 function closeEdit(){ document.getElementById('editModal').classList.add('hidden'); editId=null; }
@@ -433,30 +433,44 @@ async function ghTest(){
     const u=await r.json(); setGh('✅ 连接成功，登录为 '+u.login); return true;
   }catch(e){ setGh('请求失败：'+e.message); return false; }
 }
-async function ghPull(){
-  if(!(await ghTest())) return;
-  try{ const r=await fetch(ghPath('data.json'),{headers:ghHeaders()});
-    if(r.status===404){ setGh('云端还没有 data.json（可先推送一次）'); return; }
-    if(!r.ok){ setGh('拉取失败：'+r.status); return; }
-    const j=await r.json(); const remote=JSON.parse(decodeURIComponent(escape(atob(j.content))));
+// 把云端 data.json 合并进本地 entries（按 id 去重，保留较新版本），返回拉到的条数
+async function ghMergeRemote(){
+  if(!settings.ghToken||!settings.ghOwner||!settings.ghRepo) return 0;
+  try{
+    const r=await fetch(ghPath('data.json'),{headers:ghHeaders()});
+    if(r.status===404) return 0;        // 云端还没有文件，跳过
+    if(!r.ok) return 0;
+    const j=await r.json();
+    let remote=[]; try{ remote=JSON.parse(decodeURIComponent(escape(atob(j.content)))); }catch(e){ return 0; }
+    if(!Array.isArray(remote)) return 0;
     const map=new Map(entries.map(e=>[e.id,e]));
-    remote.forEach(e=>{ const old=map.get(e.id); if(!old||(e.updatedAt||0)>(old.updatedAt||0)) map.set(e.id,e); });
-    entries=[...map.values()]; saveEntries(); renderAll(); setGh('⬇ 已拉取并合并 '+remote.length+' 条');
-  }catch(e){ setGh('拉取出错：'+e.message); }
+    remote.forEach(e=>{ if(!e||!e.id) return; const old=map.get(e.id); if(!old||(e.updatedAt||0)>(old.updatedAt||0)) map.set(e.id,e); });
+    entries=[...map.values()]; saveEntries();
+    return remote.length;
+  }catch(e){ return 0; }
 }
-async function ghPush(){
-  if(!(await ghTest())) return;
-  let sha=null;
-  try{ const r=await fetch(ghPath('data.json'),{headers:ghHeaders()});
-    if(r.ok){ const j=await r.json(); sha=j.sha; }
-  }catch(e){}
-  const body={message:'update notes '+todayStr(), content:btoa(unescape(encodeURIComponent(JSON.stringify(entries,null,2))))};
-  if(sha) body.sha=sha;
-  try{ const r=await fetch(ghPath('data.json'),{method:'PUT',headers:ghHeaders(),body:JSON.stringify(body)});
-    if(!r.ok){ setGh('推送失败：'+r.status+' '+await r.text()); return; }
-    setGh('⬆ 已推送到云端 ('+entries.length+' 条)');
-  }catch(e){ setGh('推送出错：'+e.message); }
+async function ghPull(silent){
+  if(!settings.ghToken||!settings.ghOwner||!settings.ghRepo){ if(!silent) setGh('请先填好所有者/仓库名/令牌'); return; }
+  const n=await ghMergeRemote();
+  renderAll();
+  if(!silent) setGh('⬇ 已拉取并合并 '+n+' 条');
 }
+async function ghPush(silent){
+  if(!settings.ghToken||!settings.ghOwner||!settings.ghRepo){ if(!silent) setGh('请先填好所有者/仓库名/令牌'); return; }
+  try{
+    await ghMergeRemote();              // 先合并云端，避免覆盖另一台设备的数据
+    let sha=null;
+    const r0=await fetch(ghPath('data.json'),{headers:ghHeaders()});
+    if(r0.ok){ const j=await r0.json(); sha=j.sha; }
+    const body={message:'sync notes '+todayStr(), content:btoa(unescape(encodeURIComponent(JSON.stringify(entries,null,2))))};
+    if(sha) body.sha=sha;
+    const r=await fetch(ghPath('data.json'),{method:'PUT',headers:ghHeaders(),body:JSON.stringify(body)});
+    if(!r.ok){ if(!silent) setGh('推送失败：'+r.status+' '+await r.text()); return; }
+    if(!silent) setGh('⬆ 已推送到云端 ('+entries.length+' 条)');
+  }catch(e){ if(!silent) setGh('推送出错：'+e.message); }
+}
+// 变更后自动同步（静默，不弹提示）：先合并云端再推送，保证两边一致
+function autoSync(){ if(settings.ghToken){ ghPush(true).then(()=>{}).catch(()=>{}); } }
 function setGh(msg){ document.getElementById('ghStatus').textContent=msg; }
 
 /* ============ 主题 ============ */
@@ -496,6 +510,7 @@ document.getElementById('clearAll').onclick=()=>{ if(confirm('⚠️ 将清空�
 
 applyTheme(localStorage.getItem(LS_THEME)||'light');
 renderAll();
+if(settings.ghToken){ ghPull(true).then(()=>{}).catch(()=>{}); }   // 启动即拉取云端，保证手机/电脑一致
 
 /* ============ PWA ============ */
 if('serviceWorker' in navigator && location.protocol.startsWith('http')){
