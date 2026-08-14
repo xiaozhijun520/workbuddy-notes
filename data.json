@@ -1,17 +1,5 @@
 [
   {
-    "id": "msr5jarxrdht4",
-    "date": "2026-08-13",
-    "type": "tip",
-    "tags": [
-      "yhh"
-    ],
-    "content": "yhh",
-    "createdAt": 1786603400781,
-    "updatedAt": 1786621059620,
-    "deleted": true
-  },
-  {
     "id": "msr63jx0gq9sq",
     "date": "2026-08-13",
     "type": "done",
@@ -22,15 +10,16 @@
     "deleted": true
   },
   {
-    "id": "msr5bgtqj206e",
+    "id": "msr5jarxrdht4",
     "date": "2026-08-13",
     "type": "tip",
     "tags": [
-      "HY3，学习记录台，免费APP"
+      "yhh"
     ],
-    "content": "今天用HY3模型免费手搓了一个WorkBuddy 学习台，用来记录我WorkBuddy 学习过程",
-    "createdAt": 1786603035374,
-    "updatedAt": 1786621311411
+    "content": "yhh",
+    "createdAt": 1786603400781,
+    "updatedAt": 1786621059620,
+    "deleted": true
   },
   {
     "id": "msr8c2gz416mc",
@@ -57,6 +46,18 @@
     "deleted": true
   },
   {
+    "id": "msr5bgtqj206e",
+    "date": "2026-08-13",
+    "type": "tip",
+    "tags": [
+      "HY3，学习记录台，免费APP"
+    ],
+    "content": "今天用HY3模型免费手搓了一个WorkBuddy 学习台，用来记录我WorkBuddy 学习过程",
+    "createdAt": 1786603035374,
+    "updatedAt": 1786621311411,
+    "deleted": false
+  },
+  {
     "id": "msrgajpf568gu",
     "date": "2026-08-13",
     "type": "idea",
@@ -66,5 +67,16 @@
     "content": "想用WorkBuddy做一个数字人视频生成工具",
     "createdAt": 1786621468227,
     "updatedAt": 1786621468227
+  },
+  {
+    "id": "msslvs6l4fhmo",
+    "date": "2026-08-14",
+    "type": "idea",
+    "tags": [
+      "网址收藏"
+    ],
+    "content": "https://www.chanjing.cc/framevideo",
+    "createdAt": 1786691323245,
+    "updatedAt": 1786691323245
   }
 ]
